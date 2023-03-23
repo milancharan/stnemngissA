@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    //   var res=      fetch("https://gorest.co.in/public/v2/users").
+    //   then(p=>{console.log(p.json())},q=>console.log(q))
+    //   console.log(res);
+async function getdata()
+{
+    var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 33036075d6f588e951c390d0f2a2941681ccbebc45e9e03ab2c8745e70ff37c9");
+myHeaders.append("Content-Type", "application/json");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+
+  redirect: 'follow'
+};
+          var res=  await fetch("https://gorest.co.in/public/v2/users",requestOptions);
+        var data= await res.json();
+        console.log(data);
+        binddata(data);
+        bindropdown(data);
+        //  console.log(res);
+}
+function bindropdown(data)
+{
+    $.each(data,(idx,d)=>{
+            $("<option></option>").text(d.name).attr("value",d.id).appendTo($("#users"));
+           
+    })
+
+}
+
+$(document).ready(function(){
+  $("#users").change(function(){
+   console.log( $(this).val());
+  });
+});
+
+function binddata(data)
+{
+    $.each(data,(index,d)=>{
+            $("<tr></tr>").
+            append($("<td></td>").html(d.id))
+            .append($("<td></td>").html(d.name))
+            .append($("<td></td>").html(d.email))
+            .append($("<td></td>").html("<button></button>").text("Edit").click(()=>{
+                console.log(d);
+                $("#id").val(d.id);
+                $("#name").val(d.name);
+                $("#email").val(d.email);
+                if(d.gender=="male")
+                {
+                    $("#male").prop("checked",true);
+                }
+                else if(d.gender=="female")
+                {
+                    $("#female").prop("checked",true);
+                }
+                if(d.status=="active")
+                {
+                    $("#active").prop("checked",true);
+                }
+                else if(d.status=="inactive")
+                {
+                    $("#inactive").prop("checked",true);
+                }
+
+            }))
+            .appendTo($("#data"));
+
+    })
+}
+function submitdata(id,name,email,gender,status,requestType)
+{
+ gender= $("input[name=gender]:checked").val();
+ status= $("input[name=status]:checked").val();
+ postdata(id,name,email,gender,status,requestType);
+    return false;
+}
+
+async function postdata(id,name,email,gender,status,requestType)
+{
+    var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 33036075d6f588e951c390d0f2a2941681ccbebc45e9e03ab2c8745e70ff37c9");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+    "id":id,
+  "name": name,
+  "gender": gender,
+  "email": email,
+  "status": status
+});
+
+var requestOptions = {
+  method: requestType,
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+if(requestType=="POST")
+{
+var res=  await fetch("https://gorest.co.in/public/v2/users",requestOptions);
+        var data= await res.json();
+        console.log(data);
+}
+else if(requestType=="PUT")
+{
+    var res=  await fetch("https://gorest.co.in/public/v2/users/"+id,requestOptions);
+        var data= await res.json();
+        console.log(data);
+}
+}
+
+
+
+getdata();
+
+    </script>
+</head>
+<body>
+
+    <select id="users"></select>
+
+    <form method="post">
+        <input type="hidden" id="id" name="id1" />
+        Name <input type="text" id="name"  name="Name"/>
+        email <input type="text" id="email" name="email"/>
+        Gender <input type="radio" id="male" name="gender" value="male"/>Male
+        Gender <input type="radio" id="female" name="gender" value="female"/>FemaleMale
+        Status <input type="radio" id="active" name="status" value="active"/>Active
+        Status <input type="radio" id="inactive" name="status" value="inactive"/>Inactive
+        <button type="submit" onclick="return submitdata(id.value,Name.value,email.value,gender,status,'POST')" value="submit">Submit data</button>
+        <button type="submit" onclick="return submitdata(id1.value,Name.value,email.value,gender,status,'PUT')" value="submit">update data</button>
+    </form>
+    <table id="data"></table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW</title>
+</head>
+<body>
+    <input type="text" id="text" placeholder="Enter a String..." required>
+    <button onclick="revStr(text.value)">Reversre Str</button>
+</body>
+<script>
+    function revStr(val1){
+        var str =val1
+        var newStr = ''
+        for (var i=str.length-1;i>=0;i--) {
+            newStr += str[i]
+        }
+        document.write(newStr) 
+    }
+</script>
+</html>

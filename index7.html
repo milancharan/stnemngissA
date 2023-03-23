@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1, 2 ,3, 4, 5]
+
+    function myFunc(arr) {
+        var rra = arr.sort((a,b)=>(b-a))
+        // var rra = arr
+        // for(let i=0; i<rra.lenght; i++){
+        //     for(let j=1; j<rra.length; j++){
+        //         if(rra[i] < rra[j]){
+        //             temp = rra[i]
+        //             rra[i] = rra[j]
+        //             rra[j] = temp
+        //         }
+        //     }
+        // }
+        return rra
+    }
+
+    console.log(myFunc(arr))
+</script>
+</html>

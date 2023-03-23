@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var arr1 = [1, 5, 9, 7]
+    var arr2 = [2, 5, 7, 6]
+    var tempArr = []
+
+    for (let i = 0; i < arr1.length; i++) {
+        var item = arr1[i]
+        for (let j = 0; j < arr2.length; j++) {
+            if(arr2.find(item)){
+                continue
+            } else {
+                tempArr += arr1[i]
+            }
+        }
+    }
+
+
+</script>
+
+</html>
