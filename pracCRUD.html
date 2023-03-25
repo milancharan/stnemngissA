@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>NEW</title>
+</head>
+<body>
+    <table id="dota"></table>
+</body>
+<script>
+    async function recData() {
+        var myHeaders = new Headers()
+        myHeaders.append("Authorization", "81bbb84e6f883bb13806f5f8c6fc9f4124e13a0530b48c7d0ca566e14dcf0352"),
+        myHeaders.append("Content-Type", "application/json")
+        
+        var requests = {
+            method: "GET",
+            headers: myHeaders,
+            redirect: 'follow'
+        }
+
+        var show = await fetch("https://gorest.co.in/public/v2/users", requests)
+        var atad = await show.json()
+        console.log(atad);
+        appendatad(atad)
+    }
+
+    function appendatad(atad) {
+        $.each(atad, (here, dota) => {
+            $("<tr></tr>")
+            .append($("<td></td>").html(`${dota.id}`))
+            .append($("<td></td>").html(dota.name))
+            .append($("<td></td>").html(dota.email))
+            .append($("<td></td>").html("<button></button>").text("Edit").click(() => {
+                console.log(dota);
+                
+            }))
+            .appendTo($("#dota"))
+        })
+    }
+
+    recData()
+</script>
+</html>
+
+
+
+
+
+
+
+<!-- var empDetails: { emp_index: number, emp_id: number, Name: string, City: string, DOJ: string }[] =
+  [{ "emp_index": 0, "emp_id": 100, "Name": "Ram", "City": "Indore", "DOJ":"2001-2-1" },
+  { "emp_index": 1, "emp_id": 101, "Name": "Shyam", "City": "Indore", "DOJ": "2001-2-1"},
+  { "emp_index": 2, "emp_id": 102, "Name": "Suresh", "City": "Indore", "DOJ": "2001-2-1" },
+  { "emp_index": 3, "emp_id": 103, "Name": "Ravi", "City": "Indore", "DOJ":"2001-2-1" },
+  { "emp_index": 4, "emp_id": 104, "Name": "Ramesh", "City": "Indore", "DOJ": "2001-2-1"}
+  ]
+// console.log(empDetails)
+
+let a = <HTMLElement>document.getElementById("show");
+let out = ''
+for (let i of empDetails) {
+  out += `
+<tr>
+<td  >${i.emp_index}</td>
+<td  >${i.emp_id}</td>
+<td>${i.Name}</td>
+<td>${i.City}</td>
+<td>${i.DOJ}</td>
+<td><button class= "border-sky-200 border-2" onclick="deletedata(${i.emp_index})">Delete</button></td>
+
+      </tr>
+      `
+}
+a.innerHTML = out;
+
+
+function search1():void{
+  var c = (<HTMLInputElement>document.getElementById("search")).value;
+  var d=parseInt(c);
+  var f=<HTMLElement>document.getElementById("out")
+  let def=""
+  for (let i of empDetails){
+    if(i.emp_id==d){
+
+def+=`<thead>
+<th>${i.emp_index}</th>
+
+<th>${i.emp_id}</th>
+<th>${i.Name}</th>
+<th>${i.City}</th> 
+<th>${i.DOJ}</th>
+</thead>`
+    }
+  }
+  f.innerHTML=def;
+}
+
+function search2():void{
+  var c = (<HTMLInputElement>document.getElementById("search1")).value;
+  var d=parseInt(c);
+  var f=<HTMLElement>document.getElementById("out1")
+  let def=""
+  for (let i of empDetails){
+    if(i.emp_index==d){
+
+def+=`<thead>
+<th>${i.emp_index}</th>
+
+<th>${i.emp_id}</th>
+<th>${i.Name}</th>
+<th>${i.City}</th>
+<th>${i.DOJ}</th>
+</thead>`
+    }
+  }
+  f.innerHTML=def;
+}
+
+
+
+function search3():void{
+  var l =((<HTMLInputElement>document.getElementById("Index")).value) 
+
+  var e =((<HTMLInputElement>document.getElementById("Id")).value) 
+  var c = (<HTMLInputElement>document.getElementById("name")).value;
+  var d = (<HTMLInputElement>document.getElementById("City")).value;
+  var f = (<HTMLInputElement>document.getElementById("DOJ")).value;
+  empDetails.push({ "emp_index": parseInt(l), "emp_id":parseInt(e) , "Name": c, "City": d, "DOJ":f})
+  console.log(empDetails);
+  
+var def=''
+
+def+=`<thead>
+<td>${l}</td>
+
+<td>${e}</td>
+<td>${c}</td>
+<td>${d}</td>
+<td>${f}</td>
+<td><button class= "border-sky-200 border-2" onclick="deletedata(${l})">Delete</button></td>
+
+
+</thead>`
+    out=out+def;
+    a.innerHTML = out;
+
+  }
+function deletedata(id:number){
+  var d:number=id ;
+for(let i of empDetails){
+  if(i.emp_index===d){
+    empDetails.splice(i.emp_index,1);
+  }
+console.log(empDetails)
+
+}
+
+
+} -->
