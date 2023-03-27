@@ -304,3 +304,177 @@ var daydiff = diff / (1000 * 60 * 60 * 24);
 document.write(" Total number of days between <b> " + d1 + " </b> and <b> " + d2 + " </b> is: <b> " + daydiff + " days </b>" );   
 </script>  
 </body>   -->
+
+
+
+
+<!-- revstr -->
+
+<!-- function reverseString(str) {
+  // Step 1. Use the split() method to return a new array
+  var splitString = str.split(""); // var splitString = "hello".split("");
+  // ["h", "e", "l", "l", "o"]
+
+  // Step 2. Use the reverse() method to reverse the new created array
+  var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
+  // ["o", "l", "l", "e", "h"]
+
+  // Step 3. Use the join() method to join all elements of the array into a string
+  var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
+  // "olleh"
+  
+  //Step 4. Return the reversed string
+  return joinArray; // "olleh"
+}
+
+reverseString("hello"); -->
+
+
+
+<!-- function reverseString(str) {
+  var newString = "";
+  for (var i = str.length - 1; i >= 0; i--) {
+      newString += str[i];
+  }
+  return newString;
+}
+reverseString('hello'); -->
+
+
+<!-- function reverseString(str) {
+  if (str === "")
+    return "";
+  else
+    return reverseString(str.substr(1)) + str.charAt(0);
+}
+reverseString("hello"); -->
+
+
+<!-- function reverseString(str) {
+  return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
+}
+reverseString("hello"); -->
+
+
+
+
+<!-- sort str -->
+<!-- 
+<html>
+<body>
+   <h2>Using the <i> bubble sort algorithm </i> to sort an array of strings in JavaScript.</h2>
+   <div id = "output"> </div>
+   <script>
+      let output = document.getElementById('output');
+
+      let strings = ["car", "Bike", "truck", "cycle", "Tempo", "cart", "abcd", "string"];
+      output.innerHTML += "The original string array is " + strings + "<br/>";
+
+      for (let a = 0; a < strings.length; a++) {
+         for (let b = a + 1; b < strings.length; b++) {
+            if (strings[a] > strings[b]) {
+               let tempString = strings[a];
+               strings[a] = strings[b];
+               strings[b] = tempString;
+            }
+         }
+      }  
+      output.innerHTML += "The sorted string array is " + strings + "<br/>";
+   </script>
+</body>
+</html> -->
+
+
+<!-- 
+<html>
+<body>
+   <h2>Using the <i> bubble sort algorithm </i> to sort an array of strings in JavaScript.</h2>
+   <div id = "output"> </div>
+   <button onclick = "sortStrings()"> Sort Strings </button>
+   <script>
+      let output = document.getElementById('output');
+
+      let strings = ["ab", "Bc", "AB", "AC", "cd", "ds", "ds", "erere", "DS"];
+      output.innerHTML += "The original strings are " + strings + "<br/>";
+
+      function sortStrings() {
+         function swap(index1, index2) {
+            let tempString = strings[index1];
+            strings[index1] = strings[index2];
+            strings[index2] = tempString;
+         }
+
+         for (let a = 0; a < strings.length; a++) {
+            for (let b = a + 1; b < strings.length; b++) {
+               if (strings[a].toLowerCase() > strings[b].toLowerCase()) {
+                  swap(a, b)
+               }
+            }
+         }
+         output.innerHTML += "The sorted strings are " + strings + "<br/>";
+      }
+   </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- sort Array -->
+
+
+<!-- 
+function bubbleSort(array) {
+  var done = false;
+  while (!done) {
+    done = true;
+    for (var i = 1; i < array.length; i += 1) {
+      if (array[i - 1] > array[i]) {
+        done = false;
+        var tmp = array[i - 1];
+        array[i - 1] = array[i];
+        array[i] = tmp;
+      }
+    }
+  }
+
+  return array;
+}
+
+var numbers = [12, 10, 15, 11, 14, 13, 16];
+bubbleSort(numbers);
+console.log(numbers); -->
+
+
+
+<!-- function ordre(liste){
+  var result=[];
+  
+  
+  for(i=0; i<liste.length; i++){
+  
+  for(j=0; j<liste.length; j++){
+          if(liste[i]>liste[j+1]){
+  
+          }
+      }
+  
+   }
+  
+   console.log( result );
+  }
+  
+  ordre(nombres); -->
+
+
+<!-- 
+  const months = ['March', 'Jan', 'Feb', 'Dec'];
+months.sort();
+console.log(months);
+// Expected output: Array ["Dec", "Feb", "Jan", "March"]
+
+const array1 = [1, 30, 4, 21, 100000];
+array1.sort();
+console.log(array1); -->
