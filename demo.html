@@ -13,7 +13,7 @@
 async function getdata()
 {
     var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer 33036075d6f588e951c390d0f2a2941681ccbebc45e9e03ab2c8745e70ff37c9");
+myHeaders.append("Authorization", "Bearer 81bbb84e6f883bb13806f5f8c6fc9f4124e13a0530b48c7d0ca566e14dcf0352");
 myHeaders.append("Content-Type", "application/json");
 
 var requestOptions = {
@@ -89,7 +89,7 @@ function submitdata(id,name,email,gender,status,requestType)
 async function postdata(id,name,email,gender,status,requestType)
 {
     var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer 33036075d6f588e951c390d0f2a2941681ccbebc45e9e03ab2c8745e70ff37c9");
+myHeaders.append("Authorization", "Bearer 81bbb84e6f883bb13806f5f8c6fc9f4124e13a0530b48c7d0ca566e14dcf0352");
 myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify({
@@ -135,9 +135,9 @@ getdata();
         Name <input type="text" id="name"  name="Name"/>
         email <input type="text" id="email" name="email"/>
         Gender <input type="radio" id="male" name="gender" value="male"/>Male
-        Gender <input type="radio" id="female" name="gender" value="female"/>FemaleMale
+        <input type="radio" id="female" name="gender" value="female"/>Female
         Status <input type="radio" id="active" name="status" value="active"/>Active
-        Status <input type="radio" id="inactive" name="status" value="inactive"/>Inactive
+        <input type="radio" id="inactive" name="status" value="inactive"/>Inactive
         <button type="submit" onclick="return submitdata(id.value,Name.value,email.value,gender,status,'POST')" value="submit">Submit data</button>
         <button type="submit" onclick="return submitdata(id1.value,Name.value,email.value,gender,status,'PUT')" value="submit">update data</button>
     </form>

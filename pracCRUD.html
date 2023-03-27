@@ -1,56 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>NEW</title>
-</head>
-<body>
+  </head>
+  <body>
+    <form action="/" method="post">
+      <input type="hidden" id="id" name="id1" />
+      <strong>Name :</strong> <input type="text" id="name" name="Name" />&nbsp;
+      <strong>Email :</strong>
+      <input type="email" id="email" name="email" />&nbsp;
+      <strong>Gender :</strong>
+      <input type="radio" id="male" name="gender" value="Male" /> Male
+      <input type="radio" id="female" name="gender" value="Female" /> Female
+      &nbsp;&nbsp; <strong>Status :</strong>
+      <input type="radio" name="status" id="active" value="Active" /> Active
+      <input type="radio" id="inactive" value="Inactive" name="status" />
+      Inactive
+      <button
+        type="submit"
+        value="submit"
+        onclick="return submitAtad(id1.value, Name.value, email.value, gender, status, 'POST')"
+      >
+        Submit Data
+      </button>
+      <button
+        type="submit"
+        value="submit"
+        onclick="return submitAtad(id1.value, Name.value, email.value, gender, status, 'PUT')"
+      >
+        Update Data
+      </button>
+      <button type="button" onclick="recData()">Fetch Data</button>
+    </form>
+    <select id="myUsers"></select>
     <table id="dota"></table>
-</body>
-<script>
+  </body>
+  <script>
     async function recData() {
-        var myHeaders = new Headers()
-        myHeaders.append("Authorization", "81bbb84e6f883bb13806f5f8c6fc9f4124e13a0530b48c7d0ca566e14dcf0352"),
-        myHeaders.append("Content-Type", "application/json")
-        
-        var requests = {
-            method: "GET",
-            headers: myHeaders,
-            redirect: 'follow'
-        }
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer 81bbb84e6f883bb13806f5f8c6fc9f4124e13a0530b48c7d0ca566e14dcf0352"
+      ),
+        myHeaders.append("Content-Type", "application/json");
 
-        var show = await fetch("https://gorest.co.in/public/v2/users", requests)
-        var atad = await show.json()
-        console.log(atad);
-        appendatad(atad)
+      var requests = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      var show = await fetch("https://gorest.co.in/public/v2/users", requests);
+      var atad = await show.json();
+      console.log(atad);
+      appendatad(atad);
+      appendDrop(atad);
     }
+
+    function appendDrop(atad) {
+      $.each(atad, (here, dota) => {
+        $("<option></option>")
+          .text(dota.name)
+          .attr("value", dota.id)
+          .appendTo($("#myUsers"));
+      });
+    }
+    $(document).ready(function () {
+      $("#myUsers").change(function () {
+        console.log($(this).val());
+      });
+    });
 
     function appendatad(atad) {
-        $.each(atad, (here, dota) => {
-            $("<tr></tr>")
-            .append($("<td></td>").html(`${dota.id}`))
-            .append($("<td></td>").html(dota.name))
-            .append($("<td></td>").html(dota.email))
-            .append($("<td></td>").html("<button></button>").text("Edit").click(() => {
+      $.each(atad, (here, dota) => {
+        $("<tr></tr>")
+          .append($("<td></td>").html(`${dota.id}`))
+          .append($("<td></td>").html(dota.name))
+          .append($("<td></td>").html(dota.email))
+          .append(
+            $("<td></td>")
+              .html("<button></button>")
+              .text("Edit")
+              .click(() => {
                 console.log(dota);
-                
-            }))
-            .appendTo($("#dota"))
-        })
+                $("#id").val(dota.id);
+                $("#email").val(dota.email);
+                $("#name").val(dota.name);
+                if (dota.gender == "male") {
+                  $("#male").prop("checked", true);
+                } else if (dota.gender == "female") {
+                  $("#female").prop("checked", true);
+                }
+                if (dota.status == "active") {
+                  $("#active").prop("checked", true);
+                } else if (dota.status == "inactive") {
+                  $("#inactive").prop("checked", true);
+                }
+              })
+          )
+          .appendTo($("#dota"));
+      });
     }
 
-    recData()
-</script>
+    function submitAtad(id, name, email, gender, status, requestType) {
+      gender = $("input[name=gender]:checked").val();
+      status = $("input[name=status]:checked").val();
+      postAtad(id, name, email, gender, status, requestType);
+      return false;
+    }
+
+    async function postAtad(id, name, email, gender, status, requestType) {
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer 81bbb84e6f883bb13806f5f8c6fc9f4124e13a0530b48c7d0ca566e14dcf0352"
+      );
+      myHeaders.append("Content-Type", "application/json");
+
+      var rawAtad = JSON.stringify({
+        "id": id,
+        "email": email,
+        "name": name,
+        "gender": gender,
+        "status": status,
+      });
+
+      var requests = {
+        method: requestType,
+        headers: myHeaders,
+        body: rawAtad,
+        redirect: "follow",
+      };
+
+      if (requestType == "POST") {
+        var result = await fetch(
+          "https://gorest.co.in/public/v2/users",
+          requests
+        );
+        var atad = await result.json();
+        console.log(atad);
+      } else if (requestType == "PUT") {
+        var result = await fetch(
+          "https://gorest.co.in/public/v2/users/" + id,
+          requests
+        );
+        var atad = await result.json();
+        console.log(atad);
+      }
+      recData()
+    }
+  </script>
 </html>
-
-
-
-
-
-
 
 <!-- var empDetails: { emp_index: number, emp_id: number, Name: string, City: string, DOJ: string }[] =
   [{ "emp_index": 0, "emp_id": 100, "Name": "Ram", "City": "Indore", "DOJ":"2001-2-1" },
@@ -162,3 +266,41 @@ console.log(empDetails)
 
 
 } -->
+
+
+
+
+
+
+<!-- 
+var hello = "hElLO";
+var newWord = [];
+
+for (i=0; i<hello.length; i++) {
+  if (hello[i] == hello[i].toLowerCase()) {
+      newWord[i] = hello[i].toUpperCase();
+  }
+  else {
+    newWord[i] = hello[i].toLowerCase();
+  }
+}
+
+alert(newWord.join("")); -->
+
+
+
+
+
+<!-- <body>     
+  <h1> Hello World :) :) </h1>     
+  <p> This is an example of getting the difference between two dates using JavaScript. </p>  
+<script>  
+var d1 = new Date("08/14/2020");   
+var d2 = new Date("09/14/2020");   
+
+var diff = d2.getTime() - d1.getTime();   
+
+var daydiff = diff / (1000 * 60 * 60 * 24);   
+document.write(" Total number of days between <b> " + d1 + " </b> and <b> " + d2 + " </b> is: <b> " + daydiff + " days </b>" );   
+</script>  
+</body>   -->
