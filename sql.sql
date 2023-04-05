@@ -1,0 +1,527 @@
+-- Active: 1680591660189@@radixusers3.com@3306@milan_charan1
+create table Employee (
+	EMPLOYEE_ID int,
+    FIRST_NAME varchar(255),
+    LAST_NAME varchar(255),
+    SALARY int,
+    JOINING_DATE date,
+    DEPARTMENT varchar(255)
+);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (1,'John', 'Abraham', 1000000, STR_TO_DATE("02-07-2016", "%m-%d-%Y"), 'Banking');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (2, 'Michael', 'Clarke', 800000, STR_TO_DATE("01-06-2023", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (3, 'Roy', 'Thomas', 700000, STR_TO_DATE("07-07-2023", "%m-%d-%Y"), 'Banking');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (4, 'Tom', 'Jose', 600000, STR_TO_DATE("07-16-1998", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (5, 'Jerry', 'Pinto', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (6, 'Philip', 'Mathew', 750000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (7, 'TestName1', '123', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (8, 'TestName2', 'Lname%', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (9, 'TestName2', 'abdcio', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance');
+
+select * from Employee;
+
+select FIRST_NAME, LAST_NAME from Employee;
+
+select * from Employee
+where FIRST_NAME = 'John' OR FIRST_NAME = 'Roy';
+
+select * from Employee
+where NOT FIRST_NAME = 'John' AND NOT FIRST_NAME = 'Roy';
+
+select * from Employee
+where FIRST_NAME like 'J%';
+
+select * from Employee
+where FIRST_NAME like '%o%';
+
+
+select * from Employee
+where SALARY between 500000 and 800000;
+
+select distinct DEPARTMENT from Employee;
+
+SELECT MAX(SALARY)
+FROM Employee;
+
+select SALARY from Employee
+group by salary
+order by salary desc limit 2;
+
+with myCte as (
+  select SALARY from Employee
+  group by salary
+  order by salary desc limit 2
+)
+select avg(salary) 'Average Salary' from myCte;
+
+Select * from Employee 
+where LAST_NAME like '%\%%';
+
+-- CREATE TABLE incentives (s1 INT);
+
+
+select FIRST_NAME, LENGTH(FIRST_NAME) LENGTH from Employee
+where FIRST_NAME like 'A%' OR FIRST_NAME like 'J%' OR FIRST_NAME like 'M%'
+ORDER BY FIRST_NAME;
+
+
+select FIRST_NAME, LPAD(salary,10,'$') AS SALARY from Employee;
+
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,JOINING_DATE 
+FROM Employee
+WHERE POSITION("07" IN DATE_FORMAT(JOINING_DATE, '%d %m %Y'))>0;
+
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME , JOINING_DATE FROM Employee
+WHERE DAY(JOINING_DATE) = 7 OR MONTH(JOINING_DATE) = 7 ;
+
+select DISTINCT LENGTH(FIRST_NAME) LENGTH_NAME, LAST_NAME from Employee
+where LAST_NAME like '__%c%'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Active: 1680591660189@@radixusers3.com@3306@milan_charan
+CREATE TABLE COUNTRIES ( 
+COUNTRY_ID varchar(2),
+COUNTRY_NAME varchar(40)
+CHECK(COUNTRY_NAME IN('Italy','India','China')) ,
+REGION_ID decimal(10,0)
+);
+
+INSERT into COUNTRIES (COUNTRY_ID, COUNTRY_NAME)
+VALUES (11, 'India');
+INSERT into COUNTRIES (COUNTRY_ID, COUNTRY_NAME, REGION_ID)
+VALUES (11, 'Italy', 12);
+INSERT into COUNTRIES (COUNTRY_ID, COUNTRY_NAME, REGION_ID)
+VALUES (11, 'China', 27);
+
+SELECT * from COUNTRIES;
+
+CREATE TABLE JOB_HISTORY ( 
+EMPLOYEE_ID int(6) NOT NULL, 
+STARTDATE date NOT NULL, 
+END_DATE date NOT NULL
+CHECK (END_DATE LIKE '--/--/----'), 
+JOB_ID varchar(10) NOT NULL, 
+DEPARTMENT_ID int(4) NOT NULL 
+);
+
+Drop table JOB_HISTORY;
+
+SELECT * from JOB_HISTORY;
+
+insert into JOB_HISTORY (EMPLOYEE_ID, STARTDATE, END_DATE, JOB_ID, DEPARTMENT_ID)
+VALUES(35678, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), STR_TO_DATE("01/02/2013", "%m/%d/%Y"), 123456789, 3042);
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Active: 1680591660189@@radixusers3.com@3306@milan_charan1
+create table Employee (
+	EMPLOYEE_ID int,
+    FIRST_NAME varchar(255),
+    LAST_NAME varchar(255),
+    SALARY int,
+    JOINING_DATE date,
+    DEPARTMENT varchar(255)
+);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (1,'John', 'Abraham', 1000000, STR_TO_DATE("02-07-2016", "%m-%d-%Y"), 'Banking');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (2, 'Michael', 'Clarke', 800000, STR_TO_DATE("01-06-2023", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (3, 'Roy', 'Thomas', 700000, STR_TO_DATE("07-07-2023", "%m-%d-%Y"), 'Banking');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (4, 'Tom', 'Jose', 600000, STR_TO_DATE("07-16-1998", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (5, 'Jerry', 'Pinto', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (6, 'Philip', 'Mathew', 750000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (7, 'TestName1', '123', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (8, 'TestName2', 'Lname%', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance');
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT)
+VALUES (9, 'TestName2', 'abdcio', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance');
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, NUM)
+VALUES (10, 'TestName3', 'jaii', 600000, STR_TO_DATE("07-29-1987", "%m-%d-%Y"), 'Insurance', 678465565);
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, NUM)
+VALUES (11, 'TestName4', 'jaii ho', 600000, STR_TO_DATE("06-29-1987", "%m-%d-%Y"), 'Insurance', 6784439565);
+
+select * from Employee;
+
+select FIRST_NAME, LAST_NAME from Employee;
+
+select * from Employee
+where FIRST_NAME = 'John' OR FIRST_NAME = 'Roy';
+
+select * from Employee
+where NOT FIRST_NAME = 'John' AND NOT FIRST_NAME = 'Roy';
+
+select * from Employee
+where FIRST_NAME like 'J%';
+
+select * from Employee
+where FIRST_NAME like '%o%';
+
+
+select * from Employee
+where SALARY between 500000 and 800000;
+
+select distinct DEPARTMENT from Employee;
+
+SELECT MAX(SALARY)
+FROM Employee;
+
+select SALARY from Employee
+group by salary
+order by salary desc limit 2;
+
+with myCte as (
+  select SALARY from Employee
+  group by salary
+  order by salary desc limit 2
+)
+select avg(salary) 'Average Salary' from myCte;
+
+Select * from Employee 
+where LAST_NAME like '%\%%';
+
+-- CREATE TABLE incentives (s1 INT);
+
+
+select FIRST_NAME, LENGTH(FIRST_NAME) LENGTH from Employee
+where FIRST_NAME like 'A%' OR FIRST_NAME like 'J%' OR FIRST_NAME like 'M%'
+ORDER BY FIRST_NAME;
+
+
+select FIRST_NAME, LPAD(salary,10,'$') AS SALARY from Employee;
+
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME , JOINING_DATE FROM Employee
+WHERE DAY(JOINING_DATE) = 7 OR MONTH(JOINING_DATE) = 7 ;
+
+select DISTINCT LENGTH(FIRST_NAME) LENGTH_NAME, LAST_NAME from Employee
+where LAST_NAME like '__%c%';
+
+ALTER TABLE Employee
+DROP COLUMN NUM;
+
+ALTER TABLE Employee
+ADD NUM varchar(50) NOT NULL;
+ALTER TABLE Employee
+DROP COLUMN SAL_DATE;
+ALTER TABLE Employee
+ADD SAL_DATE date;
+
+SELECT * from Employee;
+
+UPDATE Employee SET NUM = "7267868632" WHERE EMPLOYEE_ID = 1;
+UPDATE Employee SET NUM = "8972162133" WHERE EMPLOYEE_ID = 2;
+UPDATE Employee SET NUM = "3542352533" WHERE EMPLOYEE_ID = 3;
+UPDATE Employee SET NUM = "6465353532" WHERE EMPLOYEE_ID = 4;
+UPDATE Employee SET NUM = "7877286733" WHERE EMPLOYEE_ID = 5;
+UPDATE Employee SET NUM = "7225r87990" WHERE EMPLOYEE_ID = 6;
+UPDATE Employee SET NUM = "7225060025" WHERE EMPLOYEE_ID = 7;
+UPDATE Employee SET NUM = "9797273676" WHERE EMPLOYEE_ID = 8;
+
+UPDATE Employee SET NUM = REPLACE(NUM,'133','999') 
+WHERE NUM LIKE "%133%";
+
+SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), JOINING_DATE)), '%Y') + 0 AS AGE
+FROM Employee;
+
+SELECT DISTINCT(STR_TO_DATE(CONCAT(YEARWEEK(JOINING_DATE),'1'),'%x%v%w')) 
+FROM Employee;
+
+SELECT FIRST_NAME, JOINING_DATE 
+FROM Employee
+WHERE JOINING_DATE BETWEEN '1987-06-01' AND '1987-07-30';
+
+SELECT DATE_FORMAT(CURDATE(),'%h:%m %M %D, %Y') 
+AS 'Current_date';
+
+SELECT DISTINCT FIRST_NAME, LAST_NAME
+FROM Employee WHERE MONTH(JOINING_DATE) =  6;
+
+SELECT employee_id, last_name, joining_date,  LAST_DAY(joining_date)
+FROM Employee;
+
+SELECT FIRST_NAME, SYSDATE(), JOINING_DATE, DATEDIFF( SYSDATE(), JOINING_date )/365
+FROM Employee;
+
+SELECT FIRST_NAME, JOINING_DATE
+FROM Employee
+WHERE YEAR(JOINING_DATE)=1987;
+
+SELECT EMPLOYEE_ID, FIRST_NAME,
+salary Monthly_Salary, salary/30 Daily_Salary, 12*salary Annual_Salary
+FROM Employee
+ORDER BY Monthly_Salary ASC;
+
+select * from(  
+select FIRST_NAME, salary, dense_rank()   
+over(order by salary desc)ran from Employee) HIGHEST_SAL 
+where ran = 4; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Active: 1680591660189@@radixusers3.com@3306@milan_charan2
+create table Employee (
+	EMPLOYEE_ID int,
+    FIRST_NAME varchar(255),
+    LAST_NAME varchar(255),
+    SALARY int,
+    JOINING_DATE date,
+    DEPARTMENT varchar(255),
+    MANAGER_ID int
+);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (1,'John', 'Abraham', 1000000, STR_TO_DATE("02-07-2016", "%m-%d-%Y"), 'Banking', NULL);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (2, 'Michael', 'Clarke', 800000, STR_TO_DATE("01-06-2023", "%m-%d-%Y"), 'Insurance', 1);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (3, 'Roy', 'Thomas', 700000, STR_TO_DATE("07-07-2023", "%m-%d-%Y"), 'Banking', 1);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (4, 'Tom', 'Jose', 600000, STR_TO_DATE("07-16-1998", "%m-%d-%Y"), 'Insurance', 2);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (5, 'Jerry', 'Pinto', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance', 3);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (6, 'Philip', 'Mathew', 750000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services', 3);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (7, 'TestName1', '123', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services', 2);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (8, 'TestName2', 'Lname%', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance', 3);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (9, 'TestName2', 'abdcio', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance', 2);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (10, 'TestName3', 'jaii', 600000, STR_TO_DATE("07-29-1987", "%m-%d-%Y"), 'Insurance', 6);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (11, 'TestName4', 'jaii ho', 600000, STR_TO_DATE("06-29-1987", "%m-%d-%Y"), 'Insurance', 7);
+
+select * from Employee;
+
+create table Incentives (
+	EMPLOYEE_REF_ID int,
+    INCENTIVE_AMOUNT int,
+    INCENTIVE_DATE date
+);
+
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (1, "01-02-13", 5000);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (2, "01-02-16", 3000);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (3, "01-02-19", 4000);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (1, "01-03-13", 4500);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (2, "10-03-13", 3500);
+
+SELECT * from Incentives;
+
+SELECT FIRST_NAME,DAY(INCENTIVE_DATE - JOINING_DATE) DATE_DIFF
+FROM Employee e INNER JOIN Incentives i
+ON e.EMPLOYEE_ID=i.EMPLOYEE_REF_ID;
+
+SELECT FIRST_NAME,INCENTIVE_AMOUNT 
+FROM Employee e INNER JOIN Incentives i 
+ON e.EMPLOYEE_ID=i.EMPLOYEE_REF_ID 
+AND INCENTIVE_AMOUNT >3000;
+
+SELECT FIRST_NAME, INCENTIVE_AMOUNT
+FROM Employee e LEFT JOIN Incentives i 
+ON e.EMPLOYEE_ID=i.EMPLOYEE_REF_ID;
+
+SELECT e.FIRST_NAME AS "Employee Name",
+m.first_name AS "Manager"
+FROM Employee e 
+LEFT OUTER JOIN Employee m
+ON e.MANAGER_ID = m.employee_id;
+
+SELECT FIRST_NAME, COALESCE(INCENTIVE_AMOUNT,0) 
+FROM Employee e LEFT JOIN Incentives i 
+ON e.EMPLOYEE_ID=i.EMPLOYEE_REF_ID;
+
+SELECT DEPARTMENT, SUM(salary)
+FROM Employee 
+GROUP BY DEPARTMENT;
+
+SELECT DEPARTMENT, SUM(salary) TOTAL_SAL
+FROM Employee 
+GROUP BY DEPARTMENT
+ORDER BY TOTAL_SAL DESC;
+
+SELECT e.FIRST_NAME, e.SALARY, e.DEPARTMENT
+FROM Employee e
+WHERE e.salary IN
+(SELECT max(salary)
+FROM Employee
+GROUP BY DEPARTMENT);
+
+SELECT e.salary, e.DEPARTMENT
+FROM Employee e
+WHERE e.salary IN
+(SELECT min(salary)
+FROM Employee
+GROUP BY DEPARTMENT);
+
+SELECT DEPARTMENT,SUM(SALARY) TOTAL_SALARY
+FROM Employee GROUP BY DEPARTMENT
+HAVING SUM(SALARY) > 800000 ORDER BY TOTAL_SALARY DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Active: 1680591660189@@radixusers3.com@3306@milan_charan3
+create table Employee (
+	EMPLOYEE_ID int,
+    FIRST_NAME varchar(255),
+    LAST_NAME varchar(255),
+    SALARY int,
+    JOINING_DATE date,
+    DEPARTMENT varchar(255),
+    MANAGER_ID int
+);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (1,'John', 'Abraham', 1000000, STR_TO_DATE("02-07-2016", "%m-%d-%Y"), 'Banking', NULL);
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (2, 'Michael', 'Clarke', 800000, STR_TO_DATE("01-06-2023", "%m-%d-%Y"), 'Insurance', 1);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (3, 'Roy', 'Thomas', 700000, STR_TO_DATE("07-07-2023", "%m-%d-%Y"), 'Banking', 1);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (4, 'Tom', 'Jose', 600000, STR_TO_DATE("07-16-1998", "%m-%d-%Y"), 'Insurance', 2);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (5, 'Jerry', 'Pinto', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance', 3);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (6, 'Philip', 'Mathew', 750000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services', 3);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (7, 'TestName1', '123', 650000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Services', 2);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (8, 'TestName2', 'Lname%', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance', 3);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (9, 'TestName2', 'abdcio', 600000, STR_TO_DATE("01-02-2013", "%m-%d-%Y"), 'Insurance', 2);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (10, 'TestName3', 'jaii', 600000, STR_TO_DATE("07-29-1987", "%m-%d-%Y"), 'Insurance', 6);
+
+INSERT INTO Employee (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT, MANAGER_ID)
+VALUES (11, 'TestName4', 'jaii ho', 600000, STR_TO_DATE("06-29-1987", "%m-%d-%Y"), 'Insurance', 7);
+
+SELECT * from Employee;
+
+create table Incentives (
+	EMPLOYEE_REF_ID int,
+    INCENTIVE_AMOUNT int,
+    INCENTIVE_DATE date
+);
+
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (1, "01-02-13", 5000);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (2, "01-02-16", 3000);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (3, "01-02-19", 4000);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (1, "01-03-13", 4500);
+insert into Incentives(EMPLOYEE_REF_ID, INCENTIVE_DATE, INCENTIVE_AMOUNT)
+VALUES (2, "10-03-13", 3500);
+
+CREATE VIEW TEMP_EMP AS
+SELECT DEPARTMENT
+FROM Employee
+WHERE DEPARTMENT = 'Banking';
+
+SELECT * from TEMP_EMP;
