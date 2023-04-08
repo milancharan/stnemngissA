@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>NEW</title>
+</head>
+
+<body style="background-color: azure;">
+    <p id="con"></p>
+    <div id="mainCon" style="background-color: azure; display: flex; flex-direction: row; text-align: center; justify-content: space-evenly; margin-top: 10%; "></div>
+</body>
+<script>
+
+    async function getData() {
+        var res = await fetch("./index24.json");
+        var data = await res.json()
+        bindData(data)
+        // console.log(res);
+        // console.log(data);
+    }
+
+    function bindData(data) {
+        $.each(data, (index, d) => {
+            $("<div style='background-color: whitesmoke; box-shadow: 0px 5px 5px 0px #888888; border: 1px solid gray; border-radius: 4px; padding: 20px; '></div>")
+                .append($("<div></div>"))
+                .append($("<div></div>"))
+                .append($("<img width='50px' height='50px' alt='My AV'>").attr("src", "./images/myAV.png"))
+                .append($("<div></div>"))
+                .append($("<p style='font-size: 20px; font-weight: bolder;'></p>").html(`${d.firstName} ${d.lastName}`))
+                .append($("<p style='font-size: 16px; color: rgb(28, 143, 238); font-weight: bold;'></p>").html(d.email))
+                .appendTo($('#mainCon'))
+        })
+    }
+    getData()
+
+    // fetch('./index23.json', {
+    //     method: 'GET',
+    //     headers: {
+    //         'Accept': "application/json",
+    //     },
+    // })
+    //     .then(response => response.json())
+    //     .then(response => document.getElementById('con').innerHTML = (JSON.stringify(response)))
+</script>
+
+</html>
