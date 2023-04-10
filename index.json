@@ -1,0 +1,18 @@
+[
+    {
+        "category": "electronics",
+        "Discount": "10%"
+    },
+    {
+        "category": "jewelery",
+        "Discount": "15%"
+    },
+    {
+        "category": "men's clothing",
+        "Discount": "20%"
+    },
+    {
+        "category": "women's clothing",
+        "Discount": "25%"
+    }
+]

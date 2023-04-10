@@ -1,22 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW</title>
+    <title>EXAM</title>
 </head>
+
 <body>
-    
+    Enter a String : <input type="text" id="str" name="str" required>
+    <button type="button" onclick="myFunc(str.value)">Check</button>
 </body>
 <script>
-    var str = "the sky is blue"
-    var arr = str.split(" ")
-    var array = new Array()
-    for (let i=arr.length; i>=0;i--){
-        array.push(arr[i])
-
+    function myFunc(str) {
+        var arr = str.split(' ')
+        // console.log(arr);
+        for (let i = 0; i < arr.length; i++) {
+            var elem = arr[i].split('')
+            var len1 = elem[elem.length - 1]
+            // console.log(elem);
+            // console.log(len1);
+            var counter = 0
+            for (let j = i + 1; j < arr.length; j++) {
+                if (counter == 0) {
+                    var elem2 = arr[j].split('')
+                    var len2 = elem2[0]
+                    var flag = 0
+                    // console.log(elem2);
+                    // console.log(len2);
+                    if ((((len1 == ('a'))||(len1 == ('A'))) || ((len1 == ('e'))||(len1 == ('E'))) || ((len1 == ('i'))||(len1 == ('I'))) || ((len1 == ('o'))||(len1 == ('O'))) || ((len1 == ('u'))||(len1 == ('U')))) && (((len2 == ('a'))||(len2 == ('A'))) || ((len2 == ('e'))||(len2 == ('E'))) || ((len2 == ('i'))||(len2 == ('I'))) || ((len2 == ('o'))||(len2 == ('O'))) || ((len2 == ('u'))||(len2 == ('U'))))) {
+                        console.log("True");
+                        flag = 1
+                        break
+                    }
+                    counter++
+                } else {
+                    elem = arr[i+counter].split('')
+                    len1 = elem[elem.length - 1]
+                    var elem2 = arr[j].split('')
+                    var len2 = elem2[0]
+                    var flag = 0
+                    // console.log(elem);
+                    // console.log(len1);
+                    // console.log(elem2);
+                    // console.log(len2);
+                    if ((((len1 == ('a'))||(len1 == ('A'))) || ((len1 == ('e'))||(len1 == ('E'))) || ((len1 == ('i'))||(len1 == ('I'))) || ((len1 == ('o'))||(len1 == ('O'))) || ((len1 == ('u'))||(len1 == ('U')))) && (((len2 == ('a'))||(len2 == ('A'))) || ((len2 == ('e'))||(len2 == ('E'))) || ((len2 == ('i'))||(len2 == ('I'))) || ((len2 == ('o'))||(len2 == ('O'))) || ((len2 == ('u'))||(len2 == ('U'))))) {
+                        console.log("True");
+                        flag = 1
+                        break
+                    }
+                    counter++
+                }
+            }
+            if ((((len1 == ('a'))||(len1 == ('A'))) || ((len1 == ('e'))||(len1 == ('E'))) || ((len1 == ('i'))||(len1 == ('I'))) || ((len1 == ('o'))||(len1 == ('O'))) || ((len1 == ('u'))||(len1 == ('U')))) && (((len2 == ('a'))||(len2 == ('A'))) || ((len2 == ('e'))||(len2 == ('E'))) || ((len2 == ('i'))||(len2 == ('I'))) || ((len2 == ('o'))||(len2 == ('O'))) || ((len2 == ('u'))||(len2 == ('U')))) && (flag == 0)) {
+                console.log("True");
+                flag = 1
+                break
+            }
+            else if (flag == 1) {
+                break
+            }
+            else {
+                console.log("False");
+                break
+            }
+        }
     }
-    console.log(String(array).replaceAll(','," "));
 </script>
+
 </html>
